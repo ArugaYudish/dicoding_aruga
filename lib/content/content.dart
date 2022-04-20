@@ -1,4 +1,5 @@
 import 'package:dicoding_aruga/content/list.dart';
+import 'package:flutter/cupertino.dart';
 
 class Pesan {
   final User pengirim;
@@ -113,7 +114,7 @@ List<Pesan> messages = [
   Pesan(
     pengirim: rangga,
     waktu: '2:00 PM',
-    isi: 'Gimanaaa',
+    isi: 'https://picsum.photos/id/52/200/300',
     dilihat: true,
   ),
 ];

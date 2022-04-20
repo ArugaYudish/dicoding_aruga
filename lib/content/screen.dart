@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dicoding_aruga/content/content.dart';
 import 'package:dicoding_aruga/content/chat.dart';
+import 'package:dicoding_aruga/content/imgDetail.dart';
 
 class Screen extends StatelessWidget {
   @override
@@ -22,6 +23,21 @@ class Screen extends StatelessWidget {
 
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ZoomGambar();
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.photo_sharp),
+          )
+        ],
 
       ),
       body: ListView.builder(
