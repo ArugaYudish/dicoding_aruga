@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:dicoding_aruga/content/content.dart';
 import 'package:dicoding_aruga/content/list.dart';
 
-class Chat extends StatefulWidget {
-  final User user;
 
+
+class Chat extends StatelessWidget {
+  final User user;
   Chat({required this.user});
 
-  @override
-  ChatState createState() => ChatState();
-}
-
-class ChatState extends State<Chat> {
-  containterChat(Pesan message, bool saya, bool sama) {
+  Widget containterChat(BuildContext context,Pesan message, bool saya, bool sama) {
     if (saya) {
       return Column(
         children: <Widget>[
@@ -192,13 +188,13 @@ class ChatState extends State<Chat> {
           text: TextSpan(
             children: [
               TextSpan(
-                  text: widget.user.nama,
+                  text: user.nama,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   )),
               TextSpan(text: '\n'),
-              widget.user.status ?
+              user.status ?
               TextSpan(
                 text: 'Online',
                 style: TextStyle(
@@ -237,7 +233,7 @@ class ChatState extends State<Chat> {
                 final bool sama = PengSebelum == message.pengirim.id;
 
                 PengSebelum = message.pengirim.id;
-                return containterChat(message, saya, sama);
+                return containterChat(context, message, saya, sama);
               },
             ),
           ),

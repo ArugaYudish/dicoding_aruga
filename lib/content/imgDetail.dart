@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 import 'content.dart';
 
@@ -16,6 +17,7 @@ class _ZoomGambarState extends State<ZoomGambar> {
 
   double _scale = 1.0;
   double _previousScale = 1.0;
+  Color color = Colors.green;
 
 
   @override
@@ -24,33 +26,70 @@ class _ZoomGambarState extends State<ZoomGambar> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: color,
         title: Text('Zoom Image'),
+        actions: [
+          MaterialButton(
+            onPressed: () {
+              setState(() {
+                color= Colors.green;
+              });
+            },
+
+           color: Colors.green,
+          ),
+          MaterialButton(
+            onPressed: () {
+              setState(() {
+                color= Colors.blue
+                ;
+              });
+            },
+            color: Colors.blue,
+          ),
+          MaterialButton(
+            onPressed: () {
+              setState(() {
+                color= Colors.redAccent;
+              });
+            },
+            color: Colors.redAccent,
+          ),
+        ],
+
 
       ),
       body: ListView.builder(
         reverse: true,
         itemCount: chats.length,
-          itemBuilder: (context, int index) {
+          itemBuilder: (context, int index){
+
 
             final Pesan chat = chats[index];
 
             return GestureDetector(
+
               onScaleStart: (ScaleStartDetails details) {
                 print(details);
                 _previousScale = _scale;
-                setState(() {});
+                setState(() {
+                  _scale = 0.8;
+                });
               },
               onScaleUpdate: (ScaleUpdateDetails details) {
                 print(details);
                 _scale = _previousScale * details.scale;
-                setState(() {});
+                setState(() {
+                  _scale = 1.8;
+                });
               },
               onScaleEnd: (ScaleEndDetails details) {
                 print(details);
 
-                _previousScale = 1.0;
-                setState(() {});
+                _previousScale = _scale;
+                setState(() {
+                  _scale=1.2;
+                });
               },
               child: RotatedBox(
 
